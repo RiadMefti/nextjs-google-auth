@@ -20,6 +20,9 @@ export const config = {
     async signIn({ account, profile }) {
       // Only allow sign-in if the provider is Google and email is present
       if (account?.provider === "google" && profile?.email) {
+        // you can put here your custom logic
+        // for example in the database, you can check if the user is allowed to sign in
+        // or add him to the database if he is not there etc.
         return true;
       }
       return false;

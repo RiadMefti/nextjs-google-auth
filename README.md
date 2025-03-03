@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Google Authentication
+
+A minimal but complete implementation of 🔐 Google OAuth authentication in a Next.js application using NextAuth.js. This project demonstrates how to set up protected routes and handle authentication flows .
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js 18.x or later
+- A Google Cloud Platform account for OAuth credentials
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   ```bash
+   git clone https://github.com/yourusername/nextjs-google-auth.git
+   cd nextjs-google-auth
+   ```
 
-## Learn More
+2. Install dependencies:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   npm install
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Creating Your Google OAuth 2.0 Credentials
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Go to the [Google Cloud Console](https://console.cloud.google.com/).
+2. Create a new project or select an existing one.
+3. Navigate to “APIs & Services” → “Credentials.”
+4. Click “Create Credentials” → “OAuth client ID.”
+5. Choose “Web application” as the application type.
+6. Under “Authorized redirect URIs,” add:
+   - `http://localhost:3000/api/auth/callback/google` (for development)
+   - Your production callback URL for deployment
+7. After creating the credentials, copy the “Client ID” and “Client Secret.”
+8. Put them in your .env file
+9. You can also create AUTH_SECRET with a random secret string
 
-## Deploy on Vercel
+## Running the Project
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Start the development server:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```bash
+   npm run dev
+   ```
+
+2. Visit `http://localhost:3000` to see the application.
