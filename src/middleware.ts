@@ -22,7 +22,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/protected", request.url));
   }
 
-  if (!isPublicPath && !token) {
+  if (!isPublicPath && path !== "/" && !token) {
     // If user is not authenticated and trying to access a protected route,
     // redirect to login
     return NextResponse.redirect(new URL("/login", request.url));

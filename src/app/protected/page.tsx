@@ -1,7 +1,18 @@
 import React from "react";
+import { redirect } from "next/navigation";
+import { auth } from "@/auth";
+import SignOutButton from "@/components/SignOutButton";
 
-const ProtectedRoute = () => {
-  return <div>ProtectedRoute</div>;
-};
+export default async function ProtectedRoute() {
+  const session = await auth();
+  if (!session) {
+    redirect("/login");
+  }
 
-export default ProtectedRoute;
+  return (
+    <div>
+      <p>Welcome, {session.user?.email}</p>
+      <SignOutButton />
+    </div>
+  );
+}
