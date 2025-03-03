@@ -7,6 +7,7 @@ import type { NextAuthOptions } from "next-auth";
 import { getServerSession } from "next-auth";
 import Google from "next-auth/providers/google";
 
+// This configuration ensures users can authenticate using Google
 export const config = {
   providers: [
     Google({
@@ -17,6 +18,7 @@ export const config = {
   secret: process.env.AUTH_SECRET,
   callbacks: {
     async signIn({ account, profile }) {
+      // Only allow sign-in if the provider is Google and email is present
       if (account?.provider === "google" && profile?.email) {
         return true;
       }
@@ -25,6 +27,7 @@ export const config = {
   },
 } satisfies NextAuthOptions;
 
+// This function returns a user session using the config above
 export function auth(
   ...args:
     | [GetServerSidePropsContext["req"], GetServerSidePropsContext["res"]]
